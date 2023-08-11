@@ -122,6 +122,23 @@ void matrix_scan_kb() {
     matrix_scan_user();
 }
 
+void set_bluetooth_led(int ap_no) {
+    const annepro2Led_t blue = {
+    	.p.blue  = 0xff,
+    	.p.red   = 0x00,
+    	.p.green = 0x00,
+    	.p.alpha = 0xff,
+    };
+    for(int i=1; i<=4; i++) {
+    	if (i == ap_no) {
+	    annepro2LedStickySetKey(0, i, blue);
+	}
+	else {
+	    annepro2LedStickyUnsetKey(0, i);
+        }
+    }
+}
+
 /*!
  * @returns false   processing for this keycode has been completed.
  */
@@ -131,36 +148,41 @@ bool OVERRIDE process_record_kb(uint16_t keycode, keyrecord_t *record) {
             annepro2LedForwardKeypress(record->event.key.row, record->event.key.col);
         }
 
-        const annepro2Led_t blue = {
-            .p.blue  = 0xff,
-            .p.red   = 0x00,
-            .p.green = 0x00,
-            .p.alpha = 0xff,
-        };
+//        const annepro2Led_t blue = {
+//            .p.blue  = 0xff,
+//            .p.red   = 0x00,
+//            .p.green = 0x00,
+//            .p.alpha = 0xff,
+//        };
 
         switch (keycode) {
             case KC_AP2_BT1:
                 annepro2_ble_broadcast(0);
-                annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+                //annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+		set_bluetooth_led(1);
                 return false;
 
             case KC_AP2_BT2:
                 annepro2_ble_broadcast(1);
-                annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+                //annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+		set_bluetooth_led(2);
                 return false;
 
             case KC_AP2_BT3:
                 annepro2_ble_broadcast(2);
-                annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+                //annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+		set_bluetooth_led(3);
                 return false;
 
             case KC_AP2_BT4:
                 annepro2_ble_broadcast(3);
-                annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+                //annepro2LedBlink(record->event.key.row, record->event.key.col, blue, 8, 50);
+		set_bluetooth_led(4);
                 return false;
 
             case KC_AP2_USB:
                 annepro2_ble_disconnect();
+		set_bluetooth_led(0);
                 return false;
 
             case KC_AP2_BT_UNPAIR:
@@ -172,11 +194,12 @@ bool OVERRIDE process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 break;
 
             case KC_AP_LED_ON:
-                if (annepro2LedStatus.matrixEnabled) {
-                    annepro2LedNextProfile();
-                } else {
-                    annepro2LedEnable();
-                }
+//                if (annepro2LedStatus.matrixEnabled) {
+//                    annepro2LedNextProfile();
+//                } else {
+//                    annepro2LedEnable();
+//                }
+                annepro2LedEnable();
                 annepro2LedResetForegroundColor();
                 break;
 

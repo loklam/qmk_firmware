@@ -117,3 +117,13 @@ void annepro2LedForwardKeypress(uint8_t row, uint8_t col) {
     const uint8_t payload = row << 4 | col;
     protoTx(CMD_LED_KEY_DOWN, &payload, 1, 1);
 }
+
+void annepro2LedStickySetKey(uint8_t row, uint8_t col, annepro2Led_t color) {
+    uint8_t payload[] = {row, col, color.p.blue, color.p.green, color.p.red, color.p.alpha};
+    protoTx(CMD_LED_STICKY_SET_KEY, payload, sizeof(payload), 1);
+}
+
+void annepro2LedStickyUnsetKey(uint8_t row, uint8_t col) {
+    uint8_t payload[] = {row, col};
+    protoTx(CMD_LED_STICKY_UNSET_KEY, payload, sizeof(payload), 1);
+}

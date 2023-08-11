@@ -57,6 +57,9 @@ void annepro2LedBlink(uint8_t row, uint8_t col, annepro2Led_t color, uint8_t cou
 void annepro2LedSetForegroundColor(uint8_t red, uint8_t green, uint8_t blue);
 void annepro2LedResetForegroundColor(void);
 
+void annepro2LedStickySetKey(uint8_t row, uint8_t col, annepro2Led_t color);
+void annepro2LedStickyUnsetKey(uint8_t row, uint8_t col);
+
 typedef struct {
     uint8_t amountOfProfiles;
     uint8_t currentProfile;
