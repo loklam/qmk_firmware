@@ -22,6 +22,7 @@ enum anne_pro_layers {
   _FN2_LAYER,
   _NAV_LAYER,
   _NUM_LAYER,
+  _FNN_LAYER,
 };
 
 // Key symbols are based on QMK. Use them to remap your keyboard
@@ -34,7 +35,7 @@ enum anne_pro_layers {
 * |-----------------------------------------------------------------------------------------+
 * | FN1     | (a) | (s) | (d) | (f) |  g  |  h  |  j  | (k) | (l) | (;) |  '  |    Enter    |
 * |-----------------------------------------------------------------------------------------+
-* | Shift      |  z  |  x  |  c  |  v  |  b  |  n  |  m  |  ,  |  .  |  /  |    Shift       |
+* | Shift      | (z) |  x  |  c  |  (v)  |  b  |  n  |  m  |  ,  |  .  |  /  |    Shift       |
 * |-----------------------------------------------------------------------------------------+
 * | Ctrl  |  L1   |  Alt  |               _Nav_             | Menu  |  FN1  |  FN2  | Ctrl  |
 * \-----------------------------------------------------------------------------------------/
@@ -56,7 +57,7 @@ enum anne_pro_layers {
     KC_GESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSPC,
     KC_TAB, KC_Q, WIN_T(KC_W), KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
     LT(_FN1_LAYER,KC_CAPS), CTL_T(KC_A), ALT_T(KC_S), SFT_T(KC_D), LT(_NUM_LAYER,KC_F), KC_G, KC_H, KC_J, SFT_T(KC_K), ALT_T(KC_L), CTL_T(KC_SCLN), KC_QUOT, KC_ENT,
-    SFT_T(KC_ENT), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_UP),
+    SFT_T(KC_ENT), MT(MOD_LCTL|MOD_LSFT,KC_Z), KC_X, KC_C, LT(_FNN_LAYER,KC_V), KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_UP),
     KC_LCTL, KC_LGUI, KC_LALT, LT(_NAV_LAYER,KC_SPC), KC_APP, LT(_FN1_LAYER,KC_LEFT), LT(_FN2_LAYER,KC_DOWN), RCTL_T(KC_RGHT)
 ),
   /*
@@ -128,11 +129,11 @@ enum anne_pro_layers {
   /*
   * Layer _NUM_LAYER
   * ,-----------------------------------------------------------------------------------------.
-  * |  `  |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |  BskSpc   |
+  * |  `  |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  *  |  F9 | F10 | F11 | F12 |  BskSpc   |
   * |-----------------------------------------------------------------------------------------+
   * |        |  q  |  w  |  e  |  r  |  t  |  =  |  7  |  8 |  9  |  +  |  [   |  ]  |   \    |
   * |-----------------------------------------------------------------------------------------+
-  * |         |  a  |  s  |  d  |  f  |  g  |  -  |  4  |  5  |  6  |  ;  |  `  |    Enter    |
+  * |         |  a  |  s  |  d  |  f  |  g  |  -  |  4  |  5  |  6  |  .  |  `  |    Enter    |
   * |-----------------------------------------------------------------------------------------+
   * | Shift      |  z  |  x  |  c  |  v  |  b  |  0  |  1  |  2  |  3  |  /  |    Shift       |
   * |-----------------------------------------------------------------------------------------+
@@ -141,10 +142,32 @@ enum anne_pro_layers {
   *
   */
  [_NAV_LAYER] = KEYMAP( /* Base */
-    KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_BSPC,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_EQL, KC_7, KC_8, KC_9, KC_KP_PLUS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_4, KC_5, KC_6, KC_TRNS, KC_GRV, KC_TRNS,
+    KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_PAST, KC_F9, KC_F10, KC_F11, KC_F12, KC_BSPC,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_EQL, KC_7, KC_8, KC_9, KC_PPLS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_4, KC_5, KC_6, KC_DOT, KC_GRV, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_0, KC_1, KC_2, KC_3, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(_FN2_LAYER), KC_TRNS
+ ),
+  /*
+  * Layer _FNN_LAYER
+  * ,-----------------------------------------------------------------------------------------.
+  * |  `  |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |  BskSpc   |
+  * |-----------------------------------------------------------------------------------------+
+  * |        |  q  |  w  |  e  |  r  |  t  | F12 |  F7 | F8 | F9  |  [  |  [   |  ]  |   \    |
+  * |-----------------------------------------------------------------------------------------+
+  * |         |  a  |  s  |  d  |  f  |  g  | F11 | F4  | F5  | F6  |  ]  |  `  |    Enter    |
+  * |-----------------------------------------------------------------------------------------+
+  * | Shift      |  z  |  x  |  c  |  v  |  b  | F10 | F1  | F2  | F3  |  \  |    Shift       |
+  * |-----------------------------------------------------------------------------------------+
+  * | Ctrl  |  L1   |  Alt  |             FnSpace             |  App  |  FN1  |  FN2  | Ctrl  |
+  * \-----------------------------------------------------------------------------------------/
+  *
+  */
+ [_FNN_LAYER] = KEYMAP( /* Base */
+    KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_BSPC,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F12, KC_F7, KC_F8, KC_F9, KC_LBRC, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F11, KC_F4, KC_F5, KC_F6, KC_RBRC, KC_GRV, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_F10, KC_F1, KC_F2, KC_F3, KC_BSLS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(_FN2_LAYER), KC_TRNS
  ),
 };
