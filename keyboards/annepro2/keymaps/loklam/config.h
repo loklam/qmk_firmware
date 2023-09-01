@@ -1,2 +1,11 @@
 // Obins stock firmware has something similar to this already enabled, but disabled by default in QMK
-#define PERMISSIVE_HOLD
+//#define PERMISSIVE_HOLD
+
+#undef PERMISSIVE_HOLD
+
+#define IGNORE_MOD_TAP_INTERRUPT
+
+#ifdef COMBO_ENABLE
+#    define COMBO_COUNT 5
+#    define COMBO_TERM 50
+#endif
