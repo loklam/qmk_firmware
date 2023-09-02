@@ -218,9 +218,36 @@ const annepro2Led_t my_yellow = {
    .p.alpha = 0xff,
 };
 
+const annepro2Led_t my_blue = {
+   .p.blue  = 0x80,
+   .p.red   = 0x00,
+   .p.green = 0x00,
+   .p.alpha = 0xff,
+};
+
+const annepro2Led_t my_white = {
+   .p.blue  = 0xff,
+   .p.red   = 0xff,
+   .p.green = 0xff,
+   .p.alpha = 0xff,
+};
+
+const annepro2Led_t my_purple = {
+   .p.blue  = 0xff,
+   .p.red   = 0xff,
+   .p.green = 0x00,
+   .p.alpha = 0xff,
+};
+
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch(get_highest_layer(state)) {
+    	case _FN1_LAYER:
+	    annepro2LedStickySetKey(4, 6, my_white);
+	    break;
+    	case _FN2_LAYER:
+	    annepro2LedStickySetKey(4, 6, my_purple);
+	    break;
     	case _UPR_LAYER:
 	    annepro2LedStickySetKey(4, 6, my_green);
 	    break;
@@ -231,7 +258,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	    annepro2LedStickySetKey(4, 6, my_red);
 	    break;
 	default:
-     	    annepro2LedStickyUnsetKey(4, 6);
+	    annepro2LedStickySetKey(4, 6, my_blue);
 	    break;
 
     }
