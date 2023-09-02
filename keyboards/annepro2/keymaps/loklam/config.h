@@ -8,6 +8,6 @@
 #define TAPPING_TERM 180
 
 #ifdef COMBO_ENABLE
-#    define COMBO_COUNT 5
+#    define COMBO_COUNT 8
 #    define COMBO_TERM 50
 #endif

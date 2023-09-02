@@ -10,14 +10,19 @@ const uint16_t PROGMEM combo_er[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM combo_io[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM combo_jk[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM combo_kl[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM combo_ui[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM combo_mcomm[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM combo_commdot[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo_ds, KC_ESC),
-    COMBO(combo_er, KC_TAB), 
+    COMBO(combo_mcomm, KC_TAB), 
     COMBO(combo_io, KC_BSPC), 
     COMBO(combo_jk, KC_ENT), 
     COMBO(combo_kl, KC_RSFT), 
+    COMBO(combo_er, KC_PIPE), 
+    COMBO(combo_we, KC_TILD), 
+    COMBO(combo_ui, KC_MINS), 
 };
 
 enum anne_pro_layers {
@@ -113,11 +118,11 @@ enum anne_pro_layers {
   * ,-----------------------------------------------------------------------------------------.
   * |  `  |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |  BskSpc   |
   * |-----------------------------------------------------------------------------------------+
-  * |        | esc |  w  |  e  |  r  |  t  |  y  | PgUp| INS | END | PS |  [   |  ]  |   \    |
+  * |        |  !  |  @  |  #  |  $  |  %  |  ^  | PgUp| INS | END | +  | PrSc |  }  |   \    |
   * |-----------------------------------------------------------------------------------------+
-  * |         |  a  |  s  |  -  |  =  |  g  | LEFT| DOWN|  UP |RIGHT|  :  |  '  |    Enter    |
+  * |         |  &  |  *  |  (  |  )  |  -  | LEFT| DOWN|  UP |RIGHT|  |  |  "  |    Enter    |
   * |-----------------------------------------------------------------------------------------+
-  * | Shift      |  z  |  x  |  [  |  ]  |  \  | Bksp| PgDn| DEL | HOME|  /  |    Shift       |
+  * | Shift      |  z  |  `  |  [  |  ]  |  =  |bkSpc| PgDn| DEL | HOME|  \  |    Shift       |
   * |-----------------------------------------------------------------------------------------+
   * | Ctrl  |  L1   |  Alt  |             FnSpace             |  App  |  FN1  |  FN2  | Ctrl  |
   * \-----------------------------------------------------------------------------------------/
@@ -125,15 +130,15 @@ enum anne_pro_layers {
   */
  [_UPR_LAYER] = KEYMAP( /* Base */
     KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_BSPC,
-    KC_TRNS, KC_GESC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP, KC_INS, KC_END, KC_PSCR, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_EQL, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC, KC_BSLS, KC_BSPC, KC_PGDN, KC_DEL, KC_HOME, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_PGUP, KC_INS, KC_END, KC_PLUS, KC_PSCR, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_MINS, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_PIPE, KC_DQT, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_GRV, KC_LBRC, KC_RBRC, KC_EQL, KC_BSPC, KC_PGDN, KC_DEL, KC_HOME, KC_BSLS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(_FN2_LAYER), KC_TRNS
  ),
   /*
   * Layer _NUM_LAYER
   * ,-----------------------------------------------------------------------------------------.
-  * |  `  |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 | F8  |  F9 | F10 | F11 | F12 |  BskSpc   |
+  * |  ~  |  !  |  @  |  #  |  $  |  %  |  ^  |  &  |  *  |  (  |  )  |  _  |  +  |  BskSpc   |
   * |-----------------------------------------------------------------------------------------+
   * |        |  q  |  w  |  e  |  r  |  t  |  =  |  7  |  8 |  9  |  +  |  [   |  ]  |   \    |
   * |-----------------------------------------------------------------------------------------+
@@ -146,7 +151,7 @@ enum anne_pro_layers {
   *
   */
  [_NUM_LAYER] = KEYMAP( /* Base */
-    KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_BSPC,
+    KC_TILD, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS, KC_PLUS, KC_BSPC,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_EQL, KC_7, KC_8, KC_9, KC_PPLS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_MINS, KC_4, KC_5, KC_6, KC_DOT, KC_GRV, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PAST, KC_0, KC_1, KC_2, KC_3, KC_TRNS, KC_TRNS,
